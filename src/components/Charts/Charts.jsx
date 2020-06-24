@@ -2,8 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {fetchDailyData} from '../../Api';
 import {Line,Bar} from 'react-chartjs-2';
 import styles from './Charts.module.css';
-import { palette } from '@material-ui/system';
-import { withTheme } from '@material-ui/core';
+
 
 const Charts = ({data : {confirmed,recovered,deaths},country}) => {
     const [dailyData,setDailyData]= useState({});
