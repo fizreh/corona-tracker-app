@@ -44,4 +44,4 @@ jobs:
       
       #Deploy surge
     - name: Deploy React App To Surge
-      run: surge ./build expense-tracker-app-Faiza.surge.sh --token ${{secrets.SURGE_TOKEN }}
+      run: surge ./build corona-tracker-app-Faiza.surge.sh --token ${{secrets.SURGE_TOKEN }}
