@@ -2,8 +2,10 @@ import React,{useState,useEffect} from 'react'
 import {fetchDailyData} from '../../Api';
 import {Line,Bar} from 'react-chartjs-2';
 import styles from './Charts.module.css';
+import { palette } from '@material-ui/system';
+import { withTheme } from '@material-ui/core';
 
-const Charts = () => {
+const Charts = ({data : {confirmed,recovered,deaths},country}) => {
     const [dailyData,setDailyData]= useState({});
     useEffect(() =>{
         const fetchApi = async()=>{
@@ -14,7 +16,7 @@ const Charts = () => {
         //console.log(dailyData);
         
     }
-    );
+    ,[]);
 
     
 
@@ -27,10 +29,11 @@ const Charts = () => {
                 data: dailyData.map((data) => data.confirmed),
                 label: 'Infected',
                 borderColor: '#3333ff',
-                scaleFontSize: 16,
+                scaleFontSize: 26,
                 scaleFontColor:'#ff0000',
                 backgroundColor: 'rgba(0, 0,255, 0.5)',
                 fill: true,
+                
               }, {
                 data: dailyData.map((data) => data.deaths),
                 label: 'Deaths',
@@ -45,9 +48,44 @@ const Charts = () => {
           />
         ) : null
       );
+
+      if(country)
+      {
+        console.log(confirmed);
+      console.log(recovered);
+      console.log(deaths);
+      }
+
+
+      const BarChart = (
+      confirmed
+        ?(<Bar
+          data = {{
+            labels: ['Infected','Recovered','Deaths'],
+            datasets:[{
+              label: 'People',
+              backgroundColor:[ 
+              'rgba(0,0,255,0.5)',
+              'rgba(0,255,0,0.5)',
+              'rgba(255,0,0,0.5)',
+            ],
+            data: [confirmed.value,recovered.value,deaths.value],
+
+            }]        
+          }}
+          options= {{
+            legend : {display:false},
+            title : {display:true , text : `Current state in ${country}`}
+
+          }}
+        />
+         
+
+          ) : null
+      )
     return (
         <div className= {styles.container}>
-        {lineChart}
+        {country ? BarChart:lineChart}
 
         </div>
 
