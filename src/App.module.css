@@ -1,9 +1,16 @@
 body{
    
-    background-color: white;
-    background-image: url(./Images/background.jpg);
+background-image: url(./Images/background.jpg);
+
 
 }
+@media (prefers-reduced-motion: no-preference) {
+    .image {
+      animation: App-logo-spin infinite 50s linear;
+      animation-fill-mode: forwards;
+    }
+  }
+  
 
 .container{
     display: flex;
